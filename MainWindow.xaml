@@ -1,0 +1,57 @@
+﻿<Window x:Class="WishTag.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WishTag"
+        mc:Ignorable="d"
+        Title="关键词抓取" Height="600" Width="800">
+    
+    
+    <Grid>
+        <Grid.Resources>
+            <Style TargetType="TextBlock">
+                <Setter Property="VerticalAlignment" Value="Center"> </Setter>
+            </Style>
+        </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Orientation="Horizontal" Grid.ColumnSpan="2">
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">关键词:</TextBlock> 
+            <TextBox Height="30" Width="300" x:Name="txtTag" VerticalAlignment="Center"></TextBox>
+            <Button Content=" 搜 索 " Width="70" Margin="5,0" x:Name="BtnSearch" Click="BtnSearch_Click"></Button>
+            <Button Content=" 翻 译 " Width="70" Margin="5,0" x:Name="BtnTranslate" Click="BtnTranslate_Click"></Button>
+            <Button Content=" 导 出 " Width="70" Margin="5,0" x:Name="BtnExport" Click="BtnExport_Click"></Button>
+        </StackPanel>
+
+        <TextBlock Grid.Row="1">wish 原词</TextBlock>
+        <TextBlock Grid.Row="1" Grid.Column="1">翻译结果</TextBlock>
+
+
+        <ListBox Grid.Row="2" x:Name="listWishTag" SelectionChanged="listWishTag_SelectionChanged">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Border  BorderBrush="#D5D7D4" BorderThickness="0,0,0,1" Height="26" Margin="5" Width="300">
+                        <TextBlock Text="{Binding TagName}" TextWrapping="Wrap"  VerticalAlignment="Center"></TextBlock>
+                    </Border>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+ 
+
+        <ListBox Grid.Row="2" Grid.Column="1" x:Name="listZhTag" SelectionChanged="listZhTag_SelectionChanged"></ListBox>
+
+
+        <local:LoadingWait x:Name="loading"  Visibility="Collapsed" Grid.RowSpan="3" Grid.ColumnSpan="2"/>
+    </Grid>
+</Window>
